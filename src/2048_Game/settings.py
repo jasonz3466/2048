@@ -11,6 +11,8 @@ CANVAS = (656, 872)
 SLIDE, SPAWN, MERGE = 0.12, 0.18, 0.16
 POP = 0.18
 ASSETS = Path(__file__).resolve().parent.parent / "assets"
+FONTS = ASSETS / "fonts"
+SOUNDS = ASSETS / "sounds"
 
 # Colors
 BACKGROUND = (34, 32, 26)
@@ -48,6 +50,9 @@ PADDING, GAP = 12, 8
 CELL = (BOARD_SIDE - PADDING * 2 - GAP * (SIZE - 1)) // SIZE
 STEP = CELL + GAP
 TILE_RADIUS, BOARD_RADIUS, BUTTON_RADIUS = 12, 22, 10
+
+# Audio
+DEFAULT_VOLUME = 0.35
 
 
 def cell_xy(cell):

@@ -6,6 +6,7 @@ from . import storage
 from .game import Game
 from .screen import Screen
 from .controls import Controls
+from .audio import load_sound
 
 
 class App:

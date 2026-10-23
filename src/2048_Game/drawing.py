@@ -27,7 +27,8 @@ class Graphics:
         key = size, bold
         if key not in self.fonts:
             name = "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf"
-            self.fonts[key] = pygame.font.Font(str(S.ASSETS / name), size)
+            # load the font from the assets folder
+            self.fonts[key] = pygame.font.Font(str(S.FONTS / name), size)
         image = self.fonts[key].render(str(words), True, color)
         bounds = image.get_bounding_rect()
         if not bounds.width or not bounds.height:

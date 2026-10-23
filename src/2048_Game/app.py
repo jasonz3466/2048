@@ -13,6 +13,7 @@ class App:
     def __init__(self, path=None, window_size=None):
         pygame.display.init()
         pygame.font.init()
+
         width, height = pygame.display.get_desktop_sizes()[0]
         ratio = min(
             1, max(1, width - 80) / S.CANVAS[0], max(1, height - 100) / S.CANVAS[1]
@@ -20,6 +21,16 @@ class App:
         size = window_size or tuple(max(1, round(n * ratio)) for n in S.CANVAS)
         self.screen = pygame.display.set_mode(size, pygame.RESIZABLE)
         pygame.display.set_caption("2048")
+
+        pygame.mixer.init()
+
+        self.sounds = {
+            "merge": load_sound("merge", volume=S.DEFAULT_VOLUME),
+            "slide": load_sound("slide", volume=0.15),
+            "spawn": load_sound("spawn", volume=S.DEFAULT_VOLUME),
+            "pop": load_sound("pop", volume=S.DEFAULT_VOLUME)
+        }
+
         self.clock, self.game = pygame.time.Clock(), Game()
         self.path = path if path is not None else storage.data_path()
         self.preferences = storage.load(self.path)
@@ -37,6 +48,7 @@ class App:
         turn = self.game.move(direction)
         if turn:
             self.view.animator.start(turn)
+            self.sounds["slide"].play()
             self.view.focus = None
             if self.game.score > self.preferences["best"]:
                 self.preferences["best"] = self.game.score

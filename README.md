@@ -4,17 +4,31 @@ A Python/Pygame simple 2048 game
 
 ## Run on Windows
 
-Open the outer `2048` folder in VS Code. Its `main.py` is the entry point.
+Open the outer `2048` folder in VS Code.
 
 ```powershell
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe main.py
+.\.venv\Scripts\python.exe -m pip install -r requirement.txt
 ```
 
-Later launches only need the last command. On macOS or Linux, use `python3.12 -m venv .venv`, then `.venv/bin/python -m pip install -r requirements.txt` and `.venv/bin/python main.py`.
+Later launches only need to run the application. You can start the game using **either** of the following methods from your terminal:
 
-Keep `assets` alongside `main.py`. The bundled fonts require no separate installation. Their license is in `assets/FONT-LICENSE.txt`.
+### Method 1: Run from the root directory (Recommended)
+Stay in the main folder and target the entry point inside `src`:
+```powershell
+.\.venv\Scripts\python.exe src\main.py
+```
+
+### Method 2: Change directories into `src`
+Navigate into the `src` folder first, then run the script (pointing back one directory to your virtual environment):
+```powershell
+cd src
+..\.venv\Scripts\python.exe main.py
+```
+
+On macOS or Linux, use `python3.12 -m venv .venv`, then `.venv/bin/python -m pip install -r requirement.txt` and `.venv/bin/python src/main.py`.
+
+Keep `assets` alongside `main.py` inside the `src` folder. The bundled fonts require no separate installation. Their license is in `assets/FONT-LICENSE.txt`.
 
 The inner folder is `2048_Game`, matching the string in your uploaded `main.py`. Preserve that capitalization. Python's usual import syntax cannot start with a digit, so `main.py` loads the package with `import_module()`.
 
@@ -36,7 +50,7 @@ The best score and motion preference retain the existing save location and JSON 
 
 ## Change the feel
 
-In `2048_Game/settings.py`:
+In `src/2048_Game/settings.py`:
 
 ```python
 SLIDE, SPAWN, MERGE = 0.12, 0.18, 0.16
